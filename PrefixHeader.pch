@@ -1,0 +1,55 @@
+//
+//  PrefixHeader.pch
+//  yct
+//
+//  Created by 林_同 on 2018/1/4.
+//  Copyright © 2018年 林_同. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define kAppdelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+#define UserDefault_Safe [[NSUserDefaults standardUserDefaults] synchronize]
+
+#define kScreenW [UIScreen mainScreen].bounds.size.width
+#define kScreenH [UIScreen mainScreen].bounds.size.height
+//view最大y
+#define ViewMaxY(View) CGRectGetMaxY(View.frame)
+#define ViewMaxX(View) CGRectGetMaxX(View.frame)
+
+//系统view状态
+#define is_iPhoneX  (StatusBarHeight>20)
+#define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height //状态栏高度
+#define NavHeight(VC) VC.navigationController.navigationBar.frame.size.height
+#define BottomHeight(VC) VC.tabBarController.tabBar.frame.size.height
+#define BottomAreaHeight (StatusBarHeight>20?34:0)
+#define TopHeight(VC) (StatusBarHeight + NavHeight(VC))     //整个导航栏高度
+
+
+#define DefaultImage [UIImage imageNamed:@"defaultImage.jpg"]
+#define LoginInfo [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"]
+
+
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+#define Iphone6Scale(x) ((x) * kScreenW / 375.0f)//375X667
+
+#endif /* PrefixHeader_pch */

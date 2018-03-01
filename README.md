@@ -39,6 +39,11 @@ UIView的快捷属性
 - (void)getCodeWithInterVale:(NSUInteger)interval EndTitle:(NSString *)endTitle;
 ```
 
+## PrefixHeader
+宏定义、iPhone X判断
+
+
+
 ## MyNavViewController
 隐藏二级页面的tabbar
 隐藏导航条黑线
@@ -73,6 +78,13 @@ MBProgressHUD
 + (UIColor *) colorWithHexString: (NSString *)color;
 ```
 
+## LTDetailSlectBtn
+按钮中存在子label
+![DetailSlectBtn](https://github.com/lintongSD/imageSource/blob/master/DetailSlectBtn.png)
+
+## LTDetailStringView
+类似DetailSlectBtn,存在TextField
+![DetailStringView](https://github.com/lintongSD/imageSource/blob/master/DetailStringView.png)
 
 ## MJLAFAppNetAPIClient
 网络请求
