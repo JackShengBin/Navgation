@@ -10,6 +10,55 @@
 
 @implementation UIView (Extension)
 
+
+- (UINavigationController *)getSuperViewController{
+    
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        
+        UIResponder *nextResponder = [next nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UINavigationController class]]) {
+            return (UINavigationController *)nextResponder;
+        }
+    }
+    return nil;
+}
+
+- (void)lt_addSubviews:(NSArray<UIView *> *)subviews{
+    [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        if ([view isKindOfClass:[UIView class]]) {
+            [self addSubview:view];
+        }
+    }];
+}
+
+- (void)lt_backgroundViewkColor:(NSArray<UIView *> *)subviews{
+    [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        if ([view isKindOfClass:[UIView class]]) {
+            view.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255.0)/255.0 green:arc4random_uniform(255.0)/255.0 blue:arc4random_uniform(255.0)/255.0 alpha:1];
+        }
+    }];
+}
+
+- (UIImage *)createCornerRadiusWithImage:(UIImage *)image{
+    
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
+    //获取上下文
+    CGContextRef ref = UIGraphicsGetCurrentContext();
+    //画圆
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    CGContextAddEllipseInRect(ref, rect);
+    //裁剪
+    CGContextClip(ref);
+    //画到圆上
+    [image drawInRect:rect];
+    
+    UIImage *icon = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return icon;
+}
+
 - (void)setLt_w:(CGFloat)lt_w{
     CGRect frame = self.frame;
     frame.size.width = lt_w;
@@ -77,7 +126,5 @@
 - (CGSize)lt_size{
     return self.frame.size;
 }
-
-
 
 @end

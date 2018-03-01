@@ -25,4 +25,13 @@
 @property (nonatomic, assign) CGPoint lt_origin;
 
 
+- (void)lt_addSubviews:(NSArray <UIView *>*)subviews;
+- (void)lt_backgroundViewkColor:(NSArray<UIView *> *)subviews;
+
+- (UINavigationController *)getSuperViewController;
+/**
+ 绘制圆形icon
+ */
+- (UIImage *)createCornerRadiusWithImage:(UIImage *)image;
+
 @end
