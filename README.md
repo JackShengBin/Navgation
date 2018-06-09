@@ -83,6 +83,9 @@ MBProgressHUD
 
 ![DetailSlectBtn](https://github.com/lintongSD/imageSource/blob/master/DetailSlectBtn.png)
 
+## LTDirectionBtn
+设置按钮中图片和label位置
+
 ## LTDetailStringView
 类似DetailSlectBtn,存在TextField
 
