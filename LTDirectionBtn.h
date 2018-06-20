@@ -16,6 +16,8 @@ typedef NS_ENUM(NSInteger, DirectionBtnType) {
 };
 @interface LTDirectionBtn : UIButton
 
+@property (nonatomic, assign) DirectionBtnType directionType;
+
 + (LTDirectionBtn *) directionBtnWithType:(DirectionBtnType)type margin:(CGFloat)margin;
 
 @end

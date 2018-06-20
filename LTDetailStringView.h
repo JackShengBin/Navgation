@@ -10,7 +10,7 @@
 
 @interface LTDetailStringView : UIView
 
-//默认不能修改
+//默认可以修改
 @property (nonatomic, strong) UITextField *subText;
 
 @property (nonatomic, strong) UILabel *titleLabel;

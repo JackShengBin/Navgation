@@ -17,7 +17,7 @@
 
 @implementation LTDetailSlectBtn
 
-+ (instancetype)customBtnTitle:(NSString *)title subTitle:(NSString *)subTitle rightImage:(UIImage *)image{
++ (instancetype)detailBtnTitle:(NSString *)title subTitle:(NSString *)subTitle rightImage:(UIImage *)image{
     LTDetailSlectBtn *btn = [LTDetailSlectBtn new];
     btn.title.text = title;
     btn.subLabel.text = subTitle;
@@ -49,7 +49,6 @@
     _subLabel.font = [UIFont systemFontOfSize:14];
     _subLabel.textColor = [UIColor lightGrayColor];
     _subLabel.textAlignment = NSTextAlignmentRight;
-    _rightView.image = [UIImage imageNamed:@"right"];
     _line.backgroundColor = [UIColor lightGrayColor];
     
     [self lt_addSubviews:@[_title, _subLabel, _rightView, _line]];
@@ -76,14 +75,5 @@
         make.height.mas_equalTo(1);
     }];
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

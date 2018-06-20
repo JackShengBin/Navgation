@@ -16,6 +16,6 @@
 
 @property (nonatomic, assign) BOOL hidenLine;
 
-+ (instancetype)customBtnTitle:(NSString *)title subTitle:(NSString *)subTitle rightImage:(UIImage *)image;
++ (instancetype)detailBtnTitle:(NSString *)title subTitle:(NSString *)subTitle rightImage:(UIImage *)image;
 
 @end

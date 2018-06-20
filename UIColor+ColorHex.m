@@ -9,8 +9,7 @@
 #import "UIColor+ColorHex.h"
 
 @implementation UIColor (ColorHex)
-+ (UIColor *) colorWithHexString: (NSString *)color
-{
++ (UIColor *) colorWithHexString: (NSString *)color{
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     if ([cString length] < 6) {
@@ -39,5 +38,9 @@
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
     
     return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
+}
+
++ (UIColor *)randomColor{
+    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0];
 }
 @end
