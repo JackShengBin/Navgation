@@ -17,4 +17,6 @@
 
 + (instancetype)detailStringViewTitle:(NSString *)title subText:(NSString *)subText;
 
++ (instancetype)detailStringViewTitle:(NSString *)title subText:(NSString *)subText placeHolder:(NSString *)placeHolder;
+
 @end
