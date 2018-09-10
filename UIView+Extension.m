@@ -10,6 +10,11 @@
 
 @implementation UIView (Extension)
 
+- (void)lt_cornerRadius:(CGFloat)cornerRadius{
+    self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = cornerRadius;
+}
+
 
 - (UINavigationController *)getSuperViewController{
     

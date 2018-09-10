@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #define kScreenW [UIScreen mainScreen].bounds.size.width
 #define kScreenH [UIScreen mainScreen].bounds.size.height
+
+#define kNumFrom375(a) (kScreenW/375 * a)
+#define font375(num) [UIFont systemFontOfSize:kNumFrom375(num)]
 
 @interface UIView (Extension)
 
@@ -29,6 +33,8 @@
 
 - (void)lt_addSubviews:(NSArray <UIView *>*)subviews;
 - (void)lt_backgroundViewkColor:(NSArray<UIView *> *)subviews;
+
+- (void)lt_cornerRadius:(CGFloat)cornerRadius;
 
 - (UINavigationController *)getSuperViewController;
 /**

@@ -9,7 +9,7 @@
 #import "UIColor+ColorHex.h"
 
 @implementation UIColor (ColorHex)
-+ (UIColor *) colorWithHexString: (NSString *)color{
++ (UIColor *)lt_colorWithHexString: (NSString *)color{
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     if ([cString length] < 6) {

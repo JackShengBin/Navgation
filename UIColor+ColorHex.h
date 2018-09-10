@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (ColorHex)
-+ (UIColor *) colorWithHexString: (NSString *)color;
-+ (UIColor *) randomColor;
++ (UIColor *)lt_colorWithHexString: (NSString *)color;
++ (UIColor *)randomColor;
 @end
