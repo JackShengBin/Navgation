@@ -34,12 +34,31 @@
 - (void)lt_addSubviews:(NSArray <UIView *>*)subviews;
 - (void)lt_backgroundViewkColor:(NSArray<UIView *> *)subviews;
 
-- (void)lt_cornerRadius:(CGFloat)cornerRadius;
-
 - (UINavigationController *)getSuperViewController;
 /**
  绘制圆形icon
  */
 - (UIImage *)createCornerRadiusWithImage:(UIImage *)image;
+
+/**
+ 设置圆角
+ */
+- (void)lt_cornerRadius:(CGFloat)radius;
+/**
+ 设置边框及颜色
+ */
+- (void)lt_borderWidth:(CGFloat)width color:(UIColor *)color;
+/**
+ 绘制圆形icon
+ */
+- (UIImage *)createCornerRadiusWithImage:(UIImage *)image;
+
+//设置部分圆角
+- (void)addRoundedCorners:(UIRectCorner)corners
+                withRadii:(CGSize)radii
+                 viewRect:(CGRect)rect;
+
+- (void)addRoundedCorners:(UIRectCorner)corners
+                withRadii:(CGSize)radii;
 
 @end

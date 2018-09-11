@@ -10,12 +10,6 @@
 
 @implementation UIView (Extension)
 
-- (void)lt_cornerRadius:(CGFloat)cornerRadius{
-    self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = cornerRadius;
-}
-
-
 - (UINavigationController *)getSuperViewController{
     
     for (UIView* next = [self superview]; next; next = next.superview) {
@@ -130,6 +124,44 @@
 
 - (CGSize)lt_size{
     return self.frame.size;
+}
+
+- (void)lt_cornerRadius:(CGFloat)radius{
+    self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = radius;
+}
+
+- (void)lt_borderWidth:(CGFloat)width color:(UIColor *)color{
+    self.layer.borderWidth = width;
+    self.layer.borderColor = color.CGColor;
+}
+
+- (void)addRoundedCorners:(UIRectCorner)corners
+                withRadii:(CGSize)radii {
+    
+    UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:radii];
+    CAShapeLayer* shape = [[CAShapeLayer alloc] init];
+    [shape setPath:rounded.CGPath];
+    
+    self.layer.mask = shape;
+}
+
+/**
+ *  设置部分圆角(相对布局)
+ *
+ *  @param corners 需要设置为圆角的角 UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight | UIRectCornerAllCorners
+ *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
+ *  @param rect    需要设置的圆角view的rect
+ */
+- (void)addRoundedCorners:(UIRectCorner)corners
+                withRadii:(CGSize)radii
+                 viewRect:(CGRect)rect {
+    
+    UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corners cornerRadii:radii];
+    CAShapeLayer* shape = [[CAShapeLayer alloc] init];
+    [shape setPath:rounded.CGPath];
+    
+    self.layer.mask = shape;
 }
 
 @end
