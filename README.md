@@ -1,17 +1,3 @@
-[TOC]
-### Controller
-#### BINBaseViewController
-```
-//自定义转场动画
-- (void) pushAnimation:(UIViewController *)toVC  duration: (NSTimeInterval) duration;
-- (void) popAniationwithDuration: (NSTimeInterval) duration;
-```
-
-#### MyNavViewController
-```
-隐藏二级页面的tabbar
-隐藏导航条黑线
-```
 
 ### PrefixHeader
 ```
@@ -207,4 +193,18 @@ progress:(UploadProgressBlock)progress;
 类似DetailSlectBtn,存在TextField
 
 ![DetailStringView](https://github.com/lintongSD/imageSource/blob/master/DetailStringView.png)
+
+### Controller
+#### BINBaseViewController
+```
+//自定义转场动画
+- (void) pushAnimation:(UIViewController *)toVC  duration: (NSTimeInterval) duration;
+- (void) popAniationwithDuration: (NSTimeInterval) duration;
+```
+
+#### MyNavViewController
+```
+隐藏二级页面的tabbar
+隐藏导航条黑线
+```
 
