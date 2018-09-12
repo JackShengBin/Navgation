@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define themeColor [UIColor lt_colorWithHexString:@"#006BFF"]
+#define defaultBgColor [UIColor lt_defaultBgColor]
 @interface UIColor (ColorHex)
 + (UIColor *)lt_colorWithHexString: (NSString *)color;
 + (UIColor *)randomColor;
+
++ (UIColor *)lineColor;
++ (UIColor *)lt_defaultBgColor;
++ (UIColor *)lt_themeColor;
+
++ (UIColor *)lt_secodTextColor;
 @end

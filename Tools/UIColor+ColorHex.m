@@ -9,6 +9,23 @@
 #import "UIColor+ColorHex.h"
 
 @implementation UIColor (ColorHex)
+#pragma mark ---- 常用颜色
++ (UIColor *)lineColor{
+    return [UIColor lt_colorWithHexString:@"#ECECEC"];
+}
+
++ (UIColor *)lt_defaultBgColor{
+    return [UIColor lt_colorWithHexString:@"#F0F0F0"];
+}
++ (UIColor *)lt_themeColor{
+    return [UIColor lt_colorWithHexString:@"#006BFF"];
+}
+#pragma mark ---- 项目颜色宏
++ (UIColor *)lt_secodTextColor{
+    return [UIColor lt_colorWithHexString:@"#B6B5B5"];
+}
+
+#pragma mark ---- 颜色配置
 + (UIColor *)lt_colorWithHexString: (NSString *)color{
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     

@@ -1,11 +1,73 @@
-## 项目中经常用到的扩展、宏定义和方法
+[TOC]
+### Controller
+#### BINBaseViewController
+```
+//自定义转场动画
+- (void) pushAnimation:(UIViewController *)toVC  duration: (NSTimeInterval) duration;
+- (void) popAniationwithDuration: (NSTimeInterval) duration;
+```
 
-## UIView+Extension
-UIView的快捷属性
-快捷添加子view
-给数组view添加随机色(适用没数据时使用)
-绘制圆角icon
-获取导航控制器
+#### MyNavViewController
+```
+隐藏二级页面的tabbar
+隐藏导航条黑线
+```
+
+### PrefixHeader
+```
+#define kAppdelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+#define UserDefault_Safe [[NSUserDefaults standardUserDefaults] synchronize]
+
+#define kScreenW [UIScreen mainScreen].bounds.size.width
+#define kScreenH [UIScreen mainScreen].bounds.size.height
+//view最大y
+#define ViewMaxY(View) CGRectGetMaxY(View.frame)
+#define ViewMaxX(View) CGRectGetMaxX(View.frame)
+
+//系统view状态
+#define is_iPhoneX  (StatusBarHeight>20)
+#define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height //状态栏高度
+#define NavHeight(VC) VC.navigationController.navigationBar.frame.size.height
+#define BottomHeight(VC) VC.tabBarController.tabBar.frame.size.height
+#define BottomAreaHeight (StatusBarHeight>20?34:0)
+#define TopHeight(VC) (StatusBarHeight + NavHeight(VC))     //整个导航栏高度
+
+```
+### Tools
+#### LTHudTool
+```
+// tosat提示
++ (void) lt_makeTostInView:(UIView *)view position:(ToastPosition)position text:(NSString *)text duration:(CGFloat)duration;
++ (void) lt_makeTostInView:(UIView *)view text:(NSString *)text;
+
+extern void ShowHUD(void);
+extern void ShowSuccessStatus(NSString *statues);
+extern void ShowErrorStatus(NSError *error);
+extern void ShowMaskStatus(NSString *statues);
+extern void ShowMessage(NSString *statues);
+extern void ShowProgress(CGFloat progress);
+extern void DismissHud(void);
+```
+#### UIButton+Extension
+```
+//获取验证码
+- (void)getCodeWithInterVale:(NSUInteger)interval EndTitle:(NSString *)endTitle;
+```
+#### UIColor +ColorHex
+```
+#define themeColor [UIColor lt_colorWithHexString:@"#006BFF"]
+#define defaultBgColor [UIColor lt_defaultBgColor]
+@interface UIColor (ColorHex)
++ (UIColor *)lt_colorWithHexString: (NSString *)color;
++ (UIColor *)randomColor;
+
++ (UIColor *)lineColor;
++ (UIColor *)lt_defaultBgColor;
++ (UIColor *)lt_themeColor;
+
++ (UIColor *)lt_secodTextColor;
+```
+#### UIView+Extension
 ```
 @property (nonatomic, assign) CGFloat lt_h;
 
@@ -30,69 +92,119 @@ UIView的快捷属性
 绘制圆形icon
 */
 - (UIImage *)createCornerRadiusWithImage:(UIImage *)image;
+
+/**
+设置圆角
+*/
+- (void)lt_cornerRadius:(CGFloat)radius;
+/**
+设置边框及颜色
+*/
+- (void)lt_borderWidth:(CGFloat)width color:(UIColor *)color;
+/**
+绘制圆形icon
+*/
+- (UIImage *)createCornerRadiusWithImage:(UIImage *)image;
+
+//设置部分圆角
+- (void)addRoundedCorners:(UIRectCorner)corners
+withRadii:(CGSize)radii
+viewRect:(CGRect)rect;
+
+- (void)addRoundedCorners:(UIRectCorner)corners
+withRadii:(CGSize)radii;
+/**
+移除所有子控件
+*/
+- (void)lt_removeAllSubViews;
 ```
-
-## UIButton+Extension
-获取验证码
+#### NetTool
+##### LTNetworkManager
 ```
-//获取验证码
-- (void)getCodeWithInterVale:(NSUInteger)interval EndTitle:(NSString *)endTitle;
+//成功
+typedef void(^SuccessBlock)(id resultData);
+//失败
+typedef void(^FailureBlock)(NSError *error);
+//下载进度
+typedef void(^DownloadProgressBlock)(CGFloat progress);
+//上传进度
+typedef void(^UploadProgressBlock)(CGFloat progress);
+
+
+//**  网络是否可用 */
+@property (nonatomic, assign) BOOL isNetUsable;
+//**  网络实际状态 */
+@property (nonatomic, assign) AFNetworkReachabilityStatus netStatus;
+
+
++ (instancetype)shareManager;
+
++ (void)httpRequest:(NetRequestType)type
+url:(NSString *)url
+para:(NSDictionary *)para
+success:(SuccessBlock)success
+failure:(FailureBlock)failure;
+/**
+*  下载文件
+*
+*  @param path     url路径
+*  @param success  下载成功
+*  @param failure  下载失败
+*  @param progress 下载进度
+*/
+
++ (void)downloadWithPath:(NSString *)path
+success:(SuccessBlock)success
+failure:(FailureBlock)failure
+progress:(DownloadProgressBlock)progress;
+/**
+*  上传图片
+*
+*  @param path     url地址
+*  @param images    UIImage对象
+*  @param imagekey    imagekey
+*  @param params  上传参数
+*  @param success  上传成功
+*  @param failure  上传失败
+*  @param progress 上传进度
+*/
+
++ (void)uploadImageWithPath:(NSString *)path
+params:(NSDictionary *)params
+thumbName:(NSString *)imagekey
+images:(NSArray *)images
+success:(SuccessBlock)success
+failure:(FailureBlock)failure
+progress:(UploadProgressBlock)progress;
+
+/**
+获取网络状态是否可用
+@param returnStatus 回调网络是否可用
+*/
+- (void) checkNetworkStatus:(void(^)(BOOL netUsable))returnStatus;
+/**
+获取实际的网络状态
+@param resultBack 回调实际的网络状态
+*/
+- (void) getNetorkStatus:(void(^)(AFNetworkReachabilityStatus status))resultBack;
+
+/**
+结束网络监听
+*/
+- (void)stopChetNet;
+
 ```
-
-## PrefixHeader
-宏定义、iPhone X判断
-
-
-
-## MyNavViewController
-隐藏二级页面的tabbar
-隐藏导航条黑线
-
-## BINBaseViewController
-MBProgressHUD
-网络请求
-动画跳转
-```
-@property (nonatomic, readwrite, copy) MBProgressHUD *HUD;
-
-- (void)appearHUDWithContent:(NSString *)content;
-- (void)hideHUD;
-- (void)addTimeIntervalWithManager:(AFHTTPSessionManager *)manager;
-- (void)alertOfOverRun;
-
-//网络请求
-- (void)get:(NSString *)urlStr andPara:(NSDictionary*) paraDic andHudStr:(NSString *)hudStr succeed:(void(^)(NSURLSessionDataTask *task, id data))success failed:(void(^)(NSURLSessionDataTask *task, NSError* error))fail;
-- (void)post:(NSString *)urlStr andPara:(NSDictionary*) paraDic andHudStr:(NSString *)hudStr succeed:(void(^)(NSURLSessionDataTask *task, id data))success failed:(void(^)(NSURLSessionDataTask *task, NSError* error))fail;
-
-
-//动画跳转
-- (void) pushAnimation:(UIViewController *)toVC  duration: (NSTimeInterval) duration;
-- (void) popAniationwithDuration: (NSTimeInterval) duration;
-```
-
-
-
-## UIColor+ColorHex
-16进制转颜色
-```
-+ (UIColor *) colorWithHexString: (NSString *)color;
-```
-
-## LTDetailSlectBtn
+### View
+#### LTDetailSlectBtn
 按钮中存在子label
 
 ![DetailSlectBtn](https://github.com/lintongSD/imageSource/blob/master/DetailSlectBtn.png)
 
-## LTDirectionBtn
+#### LTDirectionBtn
 设置按钮中图片和label位置
 
-## LTDetailStringView
+#### LTDetailStringView
 类似DetailSlectBtn,存在TextField
 
 ![DetailStringView](https://github.com/lintongSD/imageSource/blob/master/DetailStringView.png)
 
-## MJLAFAppNetAPIClient
-网络请求
-
-## SingleDemo
-创建单例

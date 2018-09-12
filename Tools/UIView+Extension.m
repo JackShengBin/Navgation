@@ -163,5 +163,10 @@
     
     self.layer.mask = shape;
 }
-
+// 删除
+- (void) lf_removeAllSubViews{
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+}
 @end

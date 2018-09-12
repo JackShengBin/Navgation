@@ -50,6 +50,4 @@
 
 #define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 
-#define Iphone6Scale(x) ((x) * kScreenW / 375.0f)//375X667
-
 #endif /* PrefixHeader_pch */

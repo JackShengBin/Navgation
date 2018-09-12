@@ -60,5 +60,8 @@
 
 - (void)addRoundedCorners:(UIRectCorner)corners
                 withRadii:(CGSize)radii;
-
+/**
+ 移除所有子控件
+ */
+- (void)lt_removeAllSubViews;
 @end
