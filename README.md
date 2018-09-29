@@ -195,6 +195,8 @@ progress:(UploadProgressBlock)progress;
 ![DetailStringView](https://github.com/lintongSD/imageSource/blob/master/DetailStringView.png)
 
 ### Controller
+#### LTWebController
+简单的WebController
 #### BINBaseViewController
 ```
 //自定义转场动画
